@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geometry Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1, h2, h3 {
+            text-align: center;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+        }
+
+        .formula-group {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .formula-group label, .formula-group input, .formula-group button {
+            flex: 1 1 100%;
+            margin-bottom: 5px;
+        }
+
+        .formula-group label {
+            flex: 1 1 40%;
+        }
+
+        .formula-group input {
+            flex: 1 1 40%;
+        }
+
+        button {
+            background-color: lightblue;
+            color: black;
+            font-weight: bold;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        p {
+            text-align: center;
+            font-weight: bold;
+        }
+
+        @media (min-width: 600px) {
+            .formula-group {
+                flex-wrap: nowrap;
+            }
+
+            .formula-group label {
+                flex: 1 1 30%;
+            }
+
+            .formula-group input {
+                flex: 1 1 30%;
+            }
+
+            .formula-group button {
+                flex: 1 1 30%;
+            }
+        }
+    </style>
+    <script>
+        function calculateAreaOfTriangle() {
+            const base = parseFloat(document.getElementById('triangleBase').value);
+            const height = parseFloat(document.getElementById('triangleHeight').value);
+            const area = 0.5 * base * height;
+            const proof = `Area = 0.5 * Base * Height<br>Area = 0.5 * ${base} * ${height}<br>Area = ${area.toFixed(2)}`;
+            document.getElementById('triangleAreaResult').innerHTML = 'Area: ' + area.toFixed(2);
+            document.getElementById('triangleProof').innerHTML = proof;
+        }
+
+        function calculatePerimeterOfTriangle() {
+            const side1 = parseFloat(document.getElementById('triangleSide1').value);
+            const side2 = parseFloat(document.getElementById('triangleSide2').value);
+            const side3 = parseFloat(document.getElementById('triangleSide3').value);
+            const perimeter = side1 + side2 + side3;
+            const proof = `Perimeter = Side1 + Side2 + Side3<br>Perimeter = ${side1} + ${side2} + ${side3}<br>Perimeter = ${perimeter.toFixed(2)}`;
+            document.getElementById('trianglePerimeterResult').innerHTML = 'Perimeter: ' + perimeter.toFixed(2);
+            document.getElementById('trianglePerimeterProof').innerHTML = proof;
+        }
+
+        function calculateAreaOfSquare() {
+            const side = parseFloat(document.getElementById('squareSide').value);
+            const area = side * side;
+            const proof = `Area = Side * Side<br>Area = ${side} * ${side}<br>Area = ${area.toFixed(2)}`;
+            document.getElementById('squareAreaResult').innerHTML = 'Area: ' + area.toFixed(2);
+            document.getElementById('squareProof').innerHTML = proof;
+        }
+
+        function calculatePerimeterOfSquare() {
+            const side = parseFloat(document.getElementById('squareSidePerimeter').value);
+            const perimeter = 4 * side;
+            const proof = `Perimeter = 4 * Side<br>Perimeter = 4 * ${side}<br>Perimeter = ${perimeter.toFixed(2)}`;
+            document.getElementById('squarePerimeterResult').innerHTML = 'Perimeter: ' + perimeter.toFixed(2);
+            document.getElementById('squarePerimeterProof').innerHTML = proof;
+        }
+
+        function calculateAreaOfRectangle() {
+            const length = parseFloat(document.getElementById('rectangleLength').value);
+            const width = parseFloat(document.getElementById('rectangleWidth').value);
+            const area = length * width;
+            const proof = `Area = Length * Width<br>Area = ${length} * ${width}<br>Area = ${area.toFixed(2)}`;
+            document.getElementById('rectangleAreaResult').innerHTML = 'Area: ' + area.toFixed(2);
+            document.getElementById('rectangleProof').innerHTML = proof;
+        }
+
+        function calculatePerimeterOfRectangle() {
+            const length = parseFloat(document.getElementById('rectangleLengthPerimeter').value);
+            const width = parseFloat(document.getElementById('rectangleWidthPerimeter').value);
+            const perimeter = 2 * (length + width);
+            const proof = `Perimeter = 2 * (Length + Width)<br>Perimeter = 2 * (${length} + ${width})<br>Perimeter = ${perimeter.toFixed(2)}`;
+            document.getElementById('rectanglePerimeterResult').innerHTML = 'Perimeter: ' + perimeter.toFixed(2);
+            document.getElementById('rectanglePerimeterProof').innerHTML = proof;
+        }
+
+        function calculateAreaOfParallelogram() {
+            const base = parseFloat(document.getElementById('parallelogramBase').value);
+            const height = parseFloat(document.getElementById('parallelogramHeight').value);
+            const area = base * height;
+            const proof = `Area = Base * Height<br>Area = ${base} * ${height}<br>Area = ${area.toFixed(2)}`;
+            document.getElementById('parallelogramAreaResult').innerHTML = 'Area: ' + area.toFixed(2);
+            document.getElementById('parallelogramProof').innerHTML = proof;
+        }
+
+        function calculatePerimeterOfParallelogram() {
+            const side1 = parseFloat(document.getElementById('parallelogramSide1').value);
+            const side2 = parseFloat(document.getElementById('parallelogramSide2').value);
+            const perimeter = 2 * (side1 + side2);
+            const proof = `Perimeter = 2 * (Side1 + Side2)<br>Perimeter = 2 * (${side1} + ${side2})<br>Perimeter = ${perimeter.toFixed(2)}`;
+            document.getElementById('parallelogramPerimeterResult').innerHTML = 'Perimeter: ' + perimeter.toFixed(2);
+            document.getElementById('parallelogramPerimeterProof').innerHTML = proof;
+        }
+
+        function calculateAreaOfTrapezoid() {
+            const base1 = parseFloat(document.getElementById('trapezoidBase1').value);
+            const base2 = parseFloat(document.getElementById('trapezoidBase2').value);
+            const height = parseFloat(document.getElementById('trapezoidHeight').value);
+            const area = 0.5 * (base1 + base2) * height;
+            const proof = `Area = 0.5 * (Base1 + Base2) * Height<br>Area = 0.5 * (${base1} + ${base2}) * ${height}<br>Area = ${area.toFixed(2)}`;
+            document.getElementById('trapezoidAreaResult').innerHTML = 'Area: ' + area.toFixed(2);
+            document.getElementById('trapezoidProof').innerHTML = proof;
+        }
+
+        function calculatePerimeterOfTrapezoid() {
+            const side1 = parseFloat(document.getElementById('trapezoidSide1').value);
+            const side2 = parseFloat(document.getElementById('trapezoidSide2').value);
+            const side3 = parseFloat(document.getElementById('trapezoidSide3').value);
+            const side4 = parseFloat(document.getElementById('trapezoidSide4').value);
+            const perimeter = side1 + side2 + side3 + side4;
+            const proof = `Perimeter = Side1 + Side2 + Side3 + Side4<br>Perimeter = ${side1} + ${side2} + ${side3} + ${side4}<br>Perimeter = ${perimeter.toFixed(2)}`;
+            document.getElementById('trapezoidPerimeterResult').innerHTML = 'Perimeter: ' + perimeter.toFixed(2);
+            document.getElementById('trapezoidPerimeterProof').innerHTML = proof;
+        }
+
+        function calculateAreaOfRegularPolygon() {
+            const perimeter = parseFloat(document.getElementById('regularPolygonPerimeter').value);
+            const apothem = parseFloat(document.getElementById('regularPolygonApothem').value);
+            const area = 0.5 * perimeter * apothem;
+            const proof = `Area = 0.5 * Perimeter * Apothem<br>Area = 0.5 * ${perimeter} * ${apothem}<br>Area = ${area.toFixed(2)}`;
+            document.getElementById('regularPolygonAreaResult').innerHTML = 'Area: ' + area.toFixed(2);
+            document.getElementById('regularPolygonProof').innerHTML = proof;
+        }
+
+        function calculatePerimeterOfRegularPolygon() {
+            const sideLength = parseFloat(document.getElementById('regularPolygonSideLength').value);
+            const numberOfSides = parseFloat(document.getElementById('regularPolygonNumberOfSides').value);
+            const perimeter = sideLength * numberOfSides;
+            const proof = `Perimeter = Side Length * Number of Sides<br>Perimeter = ${sideLength} * ${numberOfSides}<br>Perimeter = ${perimeter.toFixed(2)}`;
+            document.getElementById('regularPolygonPerimeterResult').innerHTML = 'Perimeter: ' + perimeter.toFixed(2);
+            document.getElementById('regularPolygonPerimeterProof').innerHTML = proof;
+        }
+
+        function calculateAreaOfCircle() {
+            const radius = parseFloat(document.getElementById('circleRadius').value);
+            const area = Math.PI * Math.pow(radius, 2);
+            const proof = `Area = π * Radius²<br>Area = π * ${radius}²<br>Area = ${area.toFixed(2)}`;
+            document.getElementById('circleAreaResult').innerHTML = 'Area: ' + area.toFixed(2);
+            document.getElementById('circleProof').innerHTML = proof;
+        }
+
+        function calculateCircumferenceOfCircle() {
+            const radius = parseFloat(document.getElementById('circleRadiusCircumference').value);
+            const circumference = 2 * Math.PI * radius;
+            const proof = `Circumference = 2 * π * Radius<br>Circumference = 2 * π * ${radius}<br>Circumference = ${circumference.toFixed(2)}`;
+            document.getElementById('circleCircumferenceResult').innerHTML = 'Circumference: ' + circumference.toFixed(2);
+            document.getElementById('circleCircumferenceProof').innerHTML = proof;
+        }
+
+        function calculateVolumeOfCube() {
+            const side = parseFloat(document.getElementById('cubeSide').value);
+            const volume = Math.pow(side, 3);
+            const proof = `Volume = Side³<br>Volume = ${side}³<br>Volume = ${volume.toFixed(2)}`;
+            document.getElementById('cubeVolumeResult').innerHTML = 'Volume: ' + volume.toFixed(2);
+            document.getElementById('cubeProof').innerHTML = proof;
+        }
+
+        function calculateSurfaceAreaOfCube() {
+            const side = parseFloat(document.getElementById('cubeSideSurface').value);
+            const surfaceArea = 6 * Math.pow(side, 2);
+            const proof = `Surface Area = 6 * Side²<br>Surface Area = 6 * ${side}²<br>Surface Area = ${surfaceArea.toFixed(2)}`;
+            document.getElementById('cubeSurfaceAreaResult').innerHTML = 'Surface Area: ' + surfaceArea.toFixed(2);
+            document.getElementById('cubeSurfaceAreaProof').innerHTML = proof;
+        }
+
+        function calculateVolumeOfRectangularPrism() {
+            const length = parseFloat(document.getElementById('rectPrismLength').value);
+            const width = parseFloat(document.getElementById('rectPrismWidth').value);
+            const height = parseFloat(document.getElementById('rectPrismHeight').value);
+            const volume = length * width * height;
+            const proof = `Volume = Length * Width * Height<br>Volume = ${length} * ${width} * ${height}<br>Volume = ${volume.toFixed(2)}`;
+            document.getElementById('rectPrismVolumeResult').innerHTML = 'Volume: ' + volume.toFixed(2);
+            document.getElementById('rectPrismProof').innerHTML = proof;
+        }
+
+        function calculateSurfaceAreaOfRectangularPrism() {
+            const length = parseFloat(document.getElementById('rectPrismLengthSurface').value);
+            const width = parseFloat(document.getElementById('rectPrismWidthSurface').value);
+            const height = parseFloat(document.getElementById('rectPrismHeightSurface').value);
+            const surfaceArea = 2 * (length * width + width * height + height * length);
+            const proof = `Surface Area = 2 * (Length * Width + Width * Height + Height * Length)<br>Surface Area = 2 * (${length} * ${width} + ${width} * ${height} + ${height} * ${length})<br>Surface Area = ${surfaceArea.toFixed(2)}`;
+            document.getElementById('rectPrismSurfaceAreaResult').innerHTML = 'Surface Area: ' + surfaceArea.toFixed(2);
+            document.getElementById('rectPrismSurfaceAreaProof').innerHTML = proof;
+        }
+
+        function calculateVolumeOfCylinder() {
+            const radius = parseFloat(document.getElementById('cylinderRadius').value);
+            const height = parseFloat(document.getElementById('cylinderHeight').value);
+            const volume = Math.PI * Math.pow(radius, 2) * height;
+            const proof = `Volume = π * Radius² * Height<br>Volume = π * ${radius}² * ${height}<br>Volume = ${volume.toFixed(2)}`;
+            document.getElementById('cylinderVolumeResult').innerHTML = 'Volume: ' + volume.toFixed(2);
+            document.getElementById('cylinderProof').innerHTML = proof;
+        }
+
+        function calculateSurfaceAreaOfCylinder() {
+            const radius = parseFloat(document.getElementById('cylinderRadiusSurface').value);
+            const height = parseFloat(document.getElementById('cylinderHeightSurface').value);
+            const surfaceArea = 2 * Math.PI * radius * (radius + height);
+            const proof = `Surface Area = 2 * π * Radius * (Radius + Height)<br>Surface Area = 2 * π * ${radius} * (${radius} + ${height})<br>Surface Area = ${surfaceArea.toFixed(2)}`;
+            document.getElementById('cylinderSurfaceAreaResult').innerHTML = 'Surface Area: ' + surfaceArea.toFixed(2);
+            document.getElementById('cylinderSurfaceAreaProof').innerHTML = proof;
+        }
+
+        function calculateVolumeOfCone() {
+            const radius = parseFloat(document.getElementById('coneRadius').value);
+            const height = parseFloat(document.getElementById('coneHeight').value);
+            const volume = (1 / 3) * Math.PI * Math.pow(radius, 2) * height;
+            const proof = `Volume = 1/3 * π * Radius² * Height<br>Volume = 1/3 * π * ${radius}² * ${height}<br>Volume = ${volume.toFixed(2)}`;
+            document.getElementById('coneVolumeResult').innerHTML = 'Volume: ' + volume.toFixed(2);
+            document.getElementById('coneProof').innerHTML = proof;
+        }
+
+        function calculateSurfaceAreaOfCone() {
+            const radius = parseFloat(document.getElementById('coneRadiusSurface').value);
+            const slantHeight = parseFloat(document.getElementById('coneSlantHeight').value);
+            const surfaceArea = Math.PI * radius * (radius + slantHeight);
+            const proof = `Surface Area = π * Radius * (Radius + Slant Height)<br>Surface Area = π * ${radius} * (${radius} + ${slantHeight})<br>Surface Area = ${surfaceArea.toFixed(2)}`;
+            document.getElementById('coneSurfaceAreaResult').innerHTML = 'Surface Area: ' + surfaceArea.toFixed(2);
+            document.getElementById('coneSurfaceAreaProof').innerHTML = proof;
+        }
+
+        function calculateVolumeOfSphere() {
+            const radius = parseFloat(document.getElementById('sphereRadius').value);
+            const volume = (4 / 3) * Math.PI * Math.pow(radius, 3);
+            const proof = `Volume = 4/3 * π * Radius³<br>Volume = 4/3 * π * ${radius}³<br>Volume = ${volume.toFixed(2)}`;
+            document.getElementById('sphereVolumeResult').innerHTML = 'Volume: ' + volume.toFixed(2);
+            document.getElementById('sphereProof').innerHTML = proof;
+        }
+
+        function calculateSurfaceAreaOfSphere() {
+            const radius = parseFloat(document.getElementById('sphereRadiusSurface').value);
+            const surfaceArea = 4 * Math.PI * Math.pow(radius, 2);
+            const proof = `Surface Area = 4 * π * Radius²<br>Surface Area = 4 * π * ${radius}²<br>Surface Area = ${surfaceArea.toFixed(2)}`;
+            document.getElementById('sphereSurfaceAreaResult').innerHTML = 'Surface Area: ' + surfaceArea.toFixed(2);
+            document.getElementById('sphereSurfaceAreaProof').innerHTML = proof;
+        }
+
+        function calculateVolumeOfPyramid() {
+            const baseLength = parseFloat(document.getElementById('pyramidBaseLength').value);
+            const baseWidth = parseFloat(document.getElementById('pyramidBaseWidth').value);
+            const height = parseFloat(document.getElementById('pyramidHeight').value);
+            const volume = (1 / 3) * baseLength * baseWidth * height;
+            const proof = `Volume = 1/3 * Base Length * Base Width * Height<br>Volume = 1/3 * ${baseLength} * ${baseWidth} * ${height}<br>Volume = ${volume.toFixed(2)}`;
+            document.getElementById('pyramidVolumeResult').innerHTML = 'Volume: ' + volume.toFixed(2);
+            document.getElementById('pyramidProof').innerHTML = proof;
+        }
+
+        function calculateSurfaceAreaOfPyramid() {
+            const baseLength = parseFloat(document.getElementById('pyramidBaseLengthSurface').value);
+            const baseWidth = parseFloat(document.getElementById('pyramidBaseWidthSurface').value);
+            const slantHeight = parseFloat(document.getElementById('pyramidSlantHeight').value);
+            const baseArea = baseLength * baseWidth;
+            const lateralArea = 0.5 * (baseLength + baseWidth) * slantHeight;
+            const surfaceArea = baseArea + lateralArea;
+            const proof = `Surface Area = Base Area + Lateral Area<br>Surface Area = ${baseLength} * ${baseWidth} + 0.5 * (${baseLength} + ${baseWidth}) * ${slantHeight}<br>Surface Area = ${surfaceArea.toFixed(2)}`;
+            document.getElementById('pyramidSurfaceAreaResult').innerHTML = 'Surface Area: ' + surfaceArea.toFixed(2);
+            document.getElementById('pyramidSurfaceAreaProof').innerHTML = proof;
+        }
+
+        function calculatePythagoreanTheorem() {
+            const a = parseFloat(document.getElementById('sideA').value);
+            const b = parseFloat(document.getElementById('sideB').value);
+            const c = Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2));
+            const proof = `c² = a² + b²<br>c² = ${a}² + ${b}²<br>c² = ${Math.pow(a, 2)} + ${Math.pow(b, 2)}<br>c = √(${Math.pow(a, 2)} + ${Math.pow(b, 2)})<br>c = ${c.toFixed(2)}`;
+            document.getElementById('pythagoreanResult').innerHTML = 'Hypotenuse: ' + c.toFixed(2);
+            document.getElementById('pythagoreanProof').innerHTML = proof;
+        }
+
+        function calculateTrigonometricRatios() {
+            const opposite = parseFloat(document.getElementById('opposite').value);
+            const adjacent = parseFloat(document.getElementById('adjacent').value);
+            const hypotenuse = Math.sqrt(Math.pow(opposite, 2) + Math.pow(adjacent, 2));
+            const sine = opposite / hypotenuse;
+            const cosine = adjacent / hypotenuse;
+            const tangent = opposite / adjacent;
+            const proof = `sin(θ) = Opposite / Hypotenuse<br>sin(θ) = ${opposite} / ${hypotenuse.toFixed(2)}<br>sin(θ) = ${sine.toFixed(2)}<br><br>cos(θ) = Adjacent / Hypotenuse<br>cos(θ) = ${adjacent} / ${hypotenuse.toFixed(2)}<br>cos(θ) = ${cosine.toFixed(2)}<br><br>tan(θ) = Opposite / Adjacent<br>tan(θ) = ${opposite} / ${adjacent}<br>tan(θ) = ${tangent.toFixed(2)}`;
+            document.getElementById('trigonometricRatiosResult').innerHTML = `sin(θ): ${sine.toFixed(2)}, cos(θ): ${cosine.toFixed(2)}, tan(θ): ${tangent.toFixed(2)}`;
+            document.getElementById('trigonometricRatiosProof').innerHTML = proof;
+        }
+
+        function calculateInverseTrigonometricFunctions() {
+            const opposite = parseFloat(document.getElementById('oppositeInverse').value);
+            const adjacent = parseFloat(document.getElementById('adjacentInverse').value);
+            const hypotenuse = Math.sqrt(Math.pow(opposite, 2) + Math.pow(adjacent, 2));
+            const arcsine = Math.asin(opposite / hypotenuse) * (180 / Math.PI);
+            const arccosine = Math.acos(adjacent / hypotenuse) * (180 / Math.PI);
+            const arctangent = Math.atan(opposite / adjacent) * (180 / Math.PI);
+            const proof = `arcsin(θ) = sin⁻¹(Opposite / Hypotenuse)<br>arcsin(θ) = sin⁻¹(${opposite} / ${hypotenuse.toFixed(2)})<br>arcsin(θ) = ${arcsine.toFixed(2)}°<br><br>arccos(θ) = cos⁻¹(Adjacent / Hypotenuse)<br>arccos(θ) = cos⁻¹(${adjacent} / ${hypotenuse.toFixed(2)})<br>arccos(θ) = ${arccosine.toFixed(2)}°<br><br>arctan(θ) = tan⁻¹(Opposite / Adjacent)<br>arctan(θ) = tan⁻¹(${opposite} / ${adjacent})<br>arctan(θ) = ${arctangent.toFixed(2)}°`;
+            document.getElementById('inverseTrigonometricFunctionsResult').innerHTML = `arcsin(θ): ${arcsine.toFixed(2)}°, arccos(θ): ${arccosine.toFixed(2)}°, arctan(θ): ${arctangent.toFixed(2)}°`;
+            document.getElementById('inverseTrigonometricFunctionsProof').innerHTML = proof;
+        }
+
+        function calculateDistanceFormula() {
+            const x1 = parseFloat(document.getElementById('x1').value);
+            const y1 = parseFloat(document.getElementById('y1').value);
+            const x2 = parseFloat(document.getElementById('x2').value);
+            const y2 = parseFloat(document.getElementById('y2').value);
+            const distance = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+            const proof = `Distance = √((x₂ - x₁)² + (y₂ - y₁)²)<br>Distance = √((${x2} - ${x1})² + (${y2} - ${y1})²)<br>Distance = √(${Math.pow(x2 - x1, 2)} + ${Math.pow(y2 - y1, 2)})<br>Distance = ${distance.toFixed(2)}`;
+            document.getElementById('distanceFormulaResult').innerHTML = 'Distance: ' + distance.toFixed(2);
+            document.getElementById('distanceFormulaProof').innerHTML = proof;
+        }
+
+        function calculateMidpointFormula() {
+            const x1 = parseFloat(document.getElementById('x1Mid').value);
+            const y1 = parseFloat(document.getElementById('y1Mid').value);
+            const x2 = parseFloat(document.getElementById('x2Mid').value);
+            const y2 = parseFloat(document.getElementById('y2Mid').value);
+            const midpointX = (x1 + x2) / 2;
+            const midpointY = (y1 + y2) / 2;
+            const proof = `Midpoint = ((x₁ + x₂) / 2, (y₁ + y₂) / 2)<br>Midpoint = ((${x1} + ${x2}) / 2, (${y1} + ${y2}) / 2)<br>Midpoint = (${midpointX.toFixed(2)}, ${midpointY.toFixed(2)})`;
+            document.getElementById('midpointFormulaResult').innerHTML = `Midpoint: (${midpointX.toFixed(2)}, ${midpointY.toFixed(2)})`;
+            document.getElementById('midpointFormulaProof').innerHTML = proof;
+        }
+
+        function calculateSlopeOfLine() {
+            const x1 = parseFloat(document.getElementById('x1Slope').value);
+            const y1 = parseFloat(document.getElementById('y1Slope').value);
+            const x2 = parseFloat(document.getElementById('x2Slope').value);
+            const y2 = parseFloat(document.getElementById('y2Slope').value);
+            const slope = (y2 - y1) / (x2 - x1);
+            const proof = `Slope = (y₂ - y₁) / (x₂ - x₁)<br>Slope = (${y2} - ${y1}) / (${x2} - ${x1})<br>Slope = ${slope.toFixed(2)}`;
+            document.getElementById('slopeOfLineResult').innerHTML = 'Slope: ' + slope.toFixed(2);
+            document.getElementById('slopeOfLineProof').innerHTML = proof;
+        }
+
+        function calculateMissingAngles() {
+            const angle1 = parseFloat(document.getElementById('angle1').value);
+            const angle2 = parseFloat(document.getElementById('angle2').value);
+            const angle3 = 180 - (angle1 + angle2);
+            const proof = `Sum of angles in a triangle = 180°<br>Angle3 = 180° - (Angle1 + Angle2)<br>Angle3 = 180° - (${angle1} + ${angle2})<br>Angle3 = ${angle3.toFixed(2)}°`;
+            document.getElementById('missingAnglesResult').innerHTML = 'Missing Angle: ' + angle3.toFixed(2) + '°';
+            document.getElementById('missingAnglesProof').innerHTML = proof;
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Geometry Calculator</h1>
+
+        <h2>Triangle</h2>
+        <h3>Area</h3>
+        <div class="formula-group">
+            <label for="triangleBase">Base (Area = 0.5 * Base * Height):</label>
+            <input type="number" id="triangleBase">
+            <label for="triangleHeight">Height:</label>
+            <input type="number" id="triangleHeight">
+            <button onclick="calculateAreaOfTriangle()">Calculate</button>
+        </div>
+        <p id="triangleAreaResult"></p>
+        <p id="triangleProof"></p>
+
+        <h3>Perimeter</h3>
+        <div class="formula-group">
+            <label for="triangleSide1">Side 1 (Perimeter = Side1 + Side2 + Side3):</label>
+            <input type="number" id="triangleSide1">
+            <label for="triangleSide2">Side 2:</label>
+            <input type="number" id="triangleSide2">
+            <label for="triangleSide3">Side 3:</label>
+            <input type="number" id="triangleSide3">
+            <button onclick="calculatePerimeterOfTriangle()">Calculate</button>
+        </div>
+        <p id="trianglePerimeterResult"></p>
+        <p id="trianglePerimeterProof"></p>
+
+        <h3>Missing Angles</h3>
+        <div class="formula-group">
+            <label for="angle1">Angle 1:</label>
+            <input type="number" id="angle1">
+            <label for="angle2">Angle 2 (Sum of angles in a triangle = 180°):</label>
+            <input type="number" id="angle2">
+            <button onclick="calculateMissingAngles()">Calculate</button>
+        </div>
+        <p id="missingAnglesResult"></p>
+        <p id="missingAnglesProof"></p>
+
+        <h2>Square</h2>
+        <h3>Area</h3>
+        <div class="formula-group">
+            <label for="squareSide">Side (Area = Side * Side):</label>
+            <input type="number" id="squareSide">
+            <button onclick="calculateAreaOfSquare()">Calculate</button>
+        </div>
+        <p id="squareAreaResult"></p>
+        <p id="squareProof"></p>
+
+        <h3>Perimeter</h3>
+        <div class="formula-group">
+            <label for="squareSidePerimeter">Side (Perimeter = 4 * Side):</label>
+            <input type="number" id="squareSidePerimeter">
+            <button onclick="calculatePerimeterOfSquare()">Calculate</button>
+        </div>
+        <p id="squarePerimeterResult"></p>
+        <p id="squarePerimeterProof"></p>
+
+        <h2>Rectangle</h2>
+        <h3>Area</h3>
+        <div class="formula-group">
+            <label for="rectangleLength">Length (Area = Length * Width):</label>
+            <input type="number" id="rectangleLength">
+            <label for="rectangleWidth">Width:</label>
+            <input type="number" id="rectangleWidth">
+            <button onclick="calculateAreaOfRectangle()">Calculate</button>
+        </div>
+        <p id="rectangleAreaResult"></p>
+        <p id="rectangleProof"></p>
+
+        <h3>Perimeter</h3>
+        <div class="formula-group">
+            <label for="rectangleLengthPerimeter">Length (Perimeter = 2 * (Length + Width)):</label>
+            <input type="number" id="rectangleLengthPerimeter">
+            <label for="rectangleWidthPerimeter">Width:</label>
+            <input type="number" id="rectangleWidthPerimeter">
+            <button onclick="calculatePerimeterOfRectangle()">Calculate</button>
+        </div>
+        <p id="rectanglePerimeterResult"></p>
+        <p id="rectanglePerimeterProof"></p>
+
+        <h2>Parallelogram</h2>
+        <h3>Area</h3>
+        <div class="formula-group">
+            <label for="parallelogramBase">Base (Area = Base * Height):</label>
+            <input type="number" id="parallelogramBase">
+            <label for="parallelogramHeight">Height:</label>
+            <input type="number" id="parallelogramHeight">
+            <button onclick="calculateAreaOfParallelogram()">Calculate</button>
+        </div>
+        <p id="parallelogramAreaResult"></p>
+        <p id="parallelogramProof"></p>
+
+        <h3>Perimeter</h3>
+        <div class="formula-group">
+            <label for="parallelogramSide1">Side 1 (Perimeter = 2 * (Side1 + Side2)):</label>
+            <input type="number" id="parallelogramSide1">
+            <label for="parallelogramSide2">Side 2:</label>
+            <input type="number" id="parallelogramSide2">
+            <button onclick="calculatePerimeterOfParallelogram()">Calculate</button>
+        </div>
+        <p id="parallelogramPerimeterResult"></p>
+        <p id="parallelogramPerimeterProof"></p>
+
+        <h2>Trapezoid</h2>
+        <h3>Area</h3>
+        <div class="formula-group">
+            <label for="trapezoidBase1">Base 1 (Area = 0.5 * (Base1 + Base2) * Height):</label>
+            <input type="number" id="trapezoidBase1">
+            <label for="trapezoidBase2">Base 2:</label>
+            <input type="number" id="trapezoidBase2">
+            <label for="trapezoidHeight">Height:</label>
+            <input type="number" id="trapezoidHeight">
+            <button onclick="calculateAreaOfTrapezoid()">Calculate</button>
+        </div>
+        <p id="trapezoidAreaResult"></p>
+        <p id="trapezoidProof"></p>
+
+        <h3>Perimeter</h3>
+        <div class="formula-group">
+            <label for="trapezoidSide1">Side 1 (Perimeter = Side1 + Side2 + Side3 + Side4):</label>
+            <input type="number" id="trapezoidSide1">
+            <label for="trapezoidSide2">Side 2:</label>
+            <input type="number" id="trapezoidSide2">
+            <label for="trapezoidSide3">Side 3:</label>
+            <input type="number" id="trapezoidSide3">
+            <label for="trapezoidSide4">Side 4:</label>
+            <input type="number" id="trapezoidSide4">
+            <button onclick="calculatePerimeterOfTrapezoid()">Calculate</button>
+        </div>
+        <p id="trapezoidPerimeterResult"></p>
+        <p id="trapezoidPerimeterProof"></p>
+
+        <h2>Regular Polygon</h2>
+        <h3>Area</h3>
+        <div class="formula-group">
+            <label for="regularPolygonPerimeter">Perimeter (Area = 0.5 * Perimeter * Apothem):</label>
+            <input type="number" id="regularPolygonPerimeter">
+            <label for="regularPolygonApothem">Apothem:</label>
+            <input type="number" id="regularPolygonApothem">
+            <button onclick="calculateAreaOfRegularPolygon()">Calculate</button>
+        </div>
+        <p id="regularPolygonAreaResult"></p>
+        <p id="regularPolygonProof"></p>
+
+        <h3>Perimeter</h3>
+        <div class="formula-group">
+            <label for="regularPolygonSideLength">Side Length (Perimeter = Side Length * Number of Sides):</label>
+            <input type="number" id="regularPolygonSideLength">
+            <label for="regularPolygonNumberOfSides">Number of Sides:</label>
+            <input type="number" id="regularPolygonNumberOfSides">
+            <button onclick="calculatePerimeterOfRegularPolygon()">Calculate</button>
+        </div>
+        <p id="regularPolygonPerimeterResult"></p>
+        <p id="regularPolygonPerimeterProof"></p>
+
+        <h2>Circle</h2>
+        <h3>Area</h3>
+        <div class="formula-group">
+            <label for="circleRadius">Radius (Area = π * Radius²):</label>
+            <input type="number" id="circleRadius">
+            <button onclick="calculateAreaOfCircle()">Calculate</button>
+        </div>
+        <p id="circleAreaResult"></p>
+        <p id="circleProof"></p>
+
+        <h3>Circumference</h3>
+        <div class="formula-group">
+            <label for="circleRadiusCircumference">Radius (Circumference = 2 * π * Radius):</label>
+            <input type="number" id="circleRadiusCircumference">
+            <button onclick="calculateCircumferenceOfCircle()">Calculate</button>
+        </div>
+        <p id="circleCircumferenceResult"></p>
+        <p id="circleCircumferenceProof"></p>
+
+        <h2>Volume and Surface Area of 3D Shapes</h2>
+        <h3>Cube</h3>
+        <div class="formula-group">
+            <label for="cubeSide">Side (Volume = Side³):</label>
+            <input type="number" id="cubeSide">
+            <button onclick="calculateVolumeOfCube()">Calculate Volume</button>
+        </div>
+        <p id="cubeVolumeResult"></p>
+        <p id="cubeProof"></p>
+
+        <div class="formula-group">
+            <label for="cubeSideSurface">Side (Surface Area = 6 * Side²):</label>
+            <input type="number" id="cubeSideSurface">
+            <button onclick="calculateSurfaceAreaOfCube()">Calculate Surface Area</button>
+        </div>
+        <p id="cubeSurfaceAreaResult"></p>
+        <p id="cubeSurfaceAreaProof"></p>
+
+        <h3>Rectangular Prism</h3>
+        <div class="formula-group">
+            <label for="rectPrismLength">Length (Volume = Length * Width * Height):</label>
+            <input type="number" id="rectPrismLength">
+            <label for="rectPrismWidth">Width:</label>
+            <input type="number" id="rectPrismWidth">
+            <label for="rectPrismHeight">Height:</label>
+            <input type="number" id="rectPrismHeight">
+            <button onclick="calculateVolumeOfRectangularPrism()">Calculate Volume</button>
+        </div>
+        <p id="rectPrismVolumeResult"></p>
+        <p id="rectPrismProof"></p>
+
+        <div class="formula-group">
+            <label for="rectPrismLengthSurface">Length (Surface Area = 2 * (Length * Width + Width * Height + Height * Length)):</label>
+            <input type="number" id="rectPrismLengthSurface">
+            <label for="rectPrismWidthSurface">Width:</label>
+            <input type="number" id="rectPrismWidthSurface">
+            <label for="rectPrismHeightSurface">Height:</label>
+            <input type="number" id="rectPrismHeightSurface">
+            <button onclick="calculateSurfaceAreaOfRectangularPrism()">Calculate Surface Area</button>
+        </div>
+        <p id="rectPrismSurfaceAreaResult"></p>
+        <p id="rectPrismSurfaceAreaProof"></p>
+
+        <h3>Cylinder</h3>
+        <div class="formula-group">
+            <label for="cylinderRadius">Radius (Volume = π * Radius² * Height):</label>
+            <input type="number" id="cylinderRadius">
+            <label for="cylinderHeight">Height:</label>
+            <input type="number" id="cylinderHeight">
+            <button onclick="calculateVolumeOfCylinder()">Calculate Volume</button>
+        </div>
+        <p id="cylinderVolumeResult"></p>
+        <p id="cylinderProof"></p>
+
+        <div class="formula-group">
+            <label for="cylinderRadiusSurface">Radius (Surface Area = 2 * π * Radius * (Radius + Height)):</label>
+            <input type="number" id="cylinderRadiusSurface">
+            <label for="cylinderHeightSurface">Height:</label>
+            <input type="number" id="cylinderHeightSurface">
+            <button onclick="calculateSurfaceAreaOfCylinder()">Calculate Surface Area</button>
+        </div>
+        <p id="cylinderSurfaceAreaResult"></p>
+        <p id="cylinderSurfaceAreaProof"></p>
+
+        <h3>Cone</h3>
+        <div class="formula-group">
+            <label for="coneRadius">Radius (Volume = 1/3 * π * Radius² * Height):</label>
+            <input type="number" id="coneRadius">
+            <label for="coneHeight">Height:</label>
+            <input type="number" id="coneHeight">
+            <button onclick="calculateVolumeOfCone()">Calculate Volume</button>
+        </div>
+        <p id="coneVolumeResult"></p>
+        <p id="coneProof"></p>
+
+        <div class="formula-group">
+            <label for="coneRadiusSurface">Radius (Surface Area = π * Radius * (Radius + Slant Height)):</label>
+            <input type="number" id="coneRadiusSurface">
+            <label for="coneSlantHeight">Slant Height:</label>
+            <input type="number" id="coneSlantHeight">
+            <button onclick="calculateSurfaceAreaOfCone()">Calculate Surface Area</button>
+        </div>
+        <p id="coneSurfaceAreaResult"></p>
+        <p id="coneSurfaceAreaProof"></p>
+
+        <h3>Sphere</h3>
+        <div class="formula-group">
+            <label for="sphereRadius">Radius (Volume = 4/3 * π * Radius³):</label>
+            <input type="number" id="sphereRadius">
+            <button onclick="calculateVolumeOfSphere()">Calculate Volume</button>
+        </div>
+        <p id="sphereVolumeResult"></p>
+        <p id="sphereProof"></p>
+
+        <div class="formula-group">
+            <label for="sphereRadiusSurface">Radius (Surface Area = 4 * π * Radius²):</label>
+            <input type="number" id="sphereRadiusSurface">
+            <button onclick="calculateSurfaceAreaOfSphere()">Calculate Surface Area</button>
+        </div>
+        <p id="sphereSurfaceAreaResult"></p>
+        <p id="sphereSurfaceAreaProof"></p>
+
+        <h3>Pyramid</h3>
+        <div class="formula-group">
+            <label for="pyramidBaseLength">Base Length (Volume = 1/3 * Base Length * Base Width * Height):</label>
+            <input type="number" id="pyramidBaseLength">
+            <label for="pyramidBaseWidth">Base Width:</label>
+            <input type="number" id="pyramidBaseWidth">
+            <label for="pyramidHeight">Height:</label>
+            <input type="number" id="pyramidHeight">
+            <button onclick="calculateVolumeOfPyramid()">Calculate Volume</button>
+        </div>
+        <p id="pyramidVolumeResult"></p>
+        <p id="pyramidProof"></p>
+
+        <div class="formula-group">
+            <label for="pyramidBaseLengthSurface">Base Length (Surface Area = Base Area + Lateral Area):</label>
+            <input type="number" id="pyramidBaseLengthSurface">
+            <label for="pyramidBaseWidthSurface">Base Width:</label>
+            <input type="number" id="pyramidBaseWidthSurface">
+            <label for="pyramidSlantHeight">Slant Height:</label>
+            <input type="number" id="pyramidSlantHeight">
+            <button onclick="calculateSurfaceAreaOfPyramid()">Calculate Surface Area</button>
+        </div>
+        <p id="pyramidSurfaceAreaResult"></p>
+        <p id="pyramidSurfaceAreaProof"></p>
+
+        <h2>Trigonometric Ratios</h2>
+        <div class="formula-group">
+            <label for="opposite">Opposite:</label>
+            <input type="number" id="opposite">
+            <label for="adjacent">Adjacent:</label>
+            <input type="number" id="adjacent">
+            <button onclick="calculateTrigonometricRatios()">Calculate</button>
+        </div>
+        <p id="trigonometricRatiosResult"></p>
+        <p id="trigonometricRatiosProof"></p>
+
+        <h2>Inverse Trigonometric Functions</h2>
+        <div class="formula-group">
+            <label for="oppositeInverse">Opposite:</label>
+            <input type="number" id="oppositeInverse">
+            <label for="adjacentInverse">Adjacent:</label>
+            <input type="number" id="adjacentInverse">
+            <button onclick="calculateInverseTrigonometricFunctions()">Calculate</button>
+        </div>
+        <p id="inverseTrigonometricFunctionsResult"></p>
+        <p id="inverseTrigonometricFunctionsProof"></p>
+
+        <h2>Distance and Midpoint Formulas</h2>
+        <h3>Distance Formula</h3>
+        <div class="formula-group">
+            <label for="x1">x1:</label>
+            <input type="number" id="x1">
+            <label for="y1">y1:</label>
+            <input type="number" id="y1">
+            <label for="distanceFormula">Distance = √((x₂ - x₁)² + (y₂ - y₁)²):</label>
+            <label for="x2">x2:</label>
+            <input type="number" id="x2">
+            <label for="y2">y2:</label>
+            <input type="number" id="y2">
+            <button onclick="calculateDistanceFormula()">Calculate</button>
+        </div>
+        <p id="distanceFormulaResult"></p>
+        <p id="distanceFormulaProof"></p>
+
+        <h3>Midpoint Formula</h3>
+        <div class="formula-group">
+            <label for="x1Mid">x1:</label>
+            <input type="number" id="x1Mid">
+            <label for="y1Mid">y1:</label>
+            <input type="number" id="y1Mid">
+            <label for="midpointFormula">Midpoint = ((x₁ + x₂) / 2, (y₁ + y₂) / 2):</label>
+            <label for="x2Mid">x2:</label>
+            <input type="number" id="x2Mid">
+            <label for="y2Mid">y2:</label>
+            <input type="number" id="y2Mid">
+            <button onclick="calculateMidpointFormula()">Calculate</button>
+        </div>
+        <p id="midpointFormulaResult"></p>
+        <p id="midpointFormulaProof"></p>
+
+        <h2>Slope of a Line</h2>
+        <div class="formula-group">
+            <label for="x1Slope">x1:</label>
+            <input type="number" id="x1Slope">
+            <label for="y1Slope">y1:</label>
+            <input type="number" id="y1Slope">
+            <label for="slopeFormula">Slope = (y₂ - y₁) / (x₂ - x₁):</label>
+            <label for="x2Slope">x2:</label>
+            <input type="number" id="x2Slope">
+            <label for="y2Slope">y2:</label>
+            <input type="number" id="y2Slope">
+            <button onclick="calculateSlopeOfLine()">Calculate</button>
+        </div>
+        <p id="slopeOfLineResult"></p>
+        <p id="slopeOfLineProof"></p>
+    </div>
+</body>
+</html>
